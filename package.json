@@ -1,6 +1,6 @@
 {
   "name": "predicate-supporter",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "predicate-supporter",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "watch:test": "chokidar lib/**/* spec/**/* -c \"npm run test\""
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "chokidar-cli": "^1.2.0",
     "jasmine": "^2.4.1",
@@ -22,8 +22,5 @@
     "typescript": "^2.0.0",
     "typescript-json-schema": "^0.1.1",
     "typings": "^1.3.3"
-  },
-  "dependencies": {
-    "es6-promise": "^3.2.1"
   }
 }
