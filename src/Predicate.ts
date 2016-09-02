@@ -15,19 +15,24 @@ const ANY = OR;
 
 const XOR = (p1: predicate, p2: predicate) => (...args: any[]) => p1(...args) && !p2(...args) || !p1(...args) && p2(...args);
 
-export type ChainablePredicateProducer=(predicate: predicate) => ChainablePredicate & predicate;
+export type ChainablePredicateProducer = (predicate: predicate) => ChainablePredicate & predicate;
 
 export interface ChainablePredicate {
   AND: ChainablePredicateProducer;
-   OR: ChainablePredicateProducer;
+  OR: ChainablePredicateProducer;
   XOR: ChainablePredicateProducer;
   NOT: ChainablePredicateProducer;
 }
 
-let Predicate: ChainablePredicateProducer = function(predicate: predicate) {
-  function IPredicate(...args: any[]){
+function wrappedPredicate(predicate: predicate) {
+  return function(...args: any[]) {
     return predicate(...args);
-  }
+  };
+}
+
+let Predicate: ChainablePredicateProducer = function(predicate: predicate) {
+  const IPredicate = wrappedPredicate(predicate);
+
 
   Object.defineProperty(IPredicate, 'AND', {
     value: function(...predicates: predicate[]) {
@@ -53,7 +58,7 @@ let Predicate: ChainablePredicateProducer = function(predicate: predicate) {
     }
   });
 
-  return <ChainablePredicate & predicate> IPredicate;
+  return <ChainablePredicate & predicate > IPredicate;
 };
 
 export {
