@@ -1,6 +1,15 @@
 # Predicate-Supporter
 
 Support predicates and promise chain predicates.
+
+# Install
+
+Install with npm
+
+```
+npm i predicate-supporter
+```
+
 # Usage
 
 ```js
